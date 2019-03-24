@@ -9,12 +9,12 @@ module URLhausMonitor
       Monitor.new.lookup_by_country country
     end
 
-    desc "lookup_by_tld [tld]", "lookup by a given tld"
+    desc "lookup_by_tld [TLD]", "lookup by a given tld"
     def lookup_by_tld(tld)
       Monitor.new.lookup_by_tld tld
     end
 
-    desc "lookup_by_asn [asn]", "lookup by a given asn"
+    desc "lookup_by_asn [ASN]", "lookup by a given asn"
     def lookup_by_asn(asn)
       Monitor.new.lookup_by_asn asn
     end

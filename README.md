@@ -22,9 +22,9 @@ $ gem install urlhaus_monitor
 $ urlhaus_monitor
 Commands:
   urlhaus_monitor help [COMMAND]               # Describe available commands or one specific command
-  urlhaus_monitor lookup_by_asn [asn]          # lookup by a given asn
+  urlhaus_monitor lookup_by_asn [ASN]          # lookup by a given asn
   urlhaus_monitor lookup_by_country [COUNTRY]  # lookup by a given country code
-  urlhaus_monitor lookup_by_tld [tld]          # lookup by a given tld
+  urlhaus_monitor lookup_by_tld [TLD]          # lookup by a given tld
 ```
 
 ## Configuration
