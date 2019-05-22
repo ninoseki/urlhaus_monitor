@@ -15,16 +15,13 @@ module URLhausMonitor
 
     def initialize(line)
       parts = CSV.parse(line.chomp).flatten
-      raise ArgumentError, "#{line} is not valid." unless parts.length == 8
+      raise ArgumentError, "#{line} is not valid." unless parts.length == 8 || parts.length == 9
 
-      @date_added = parts.shift
-      @url = parts.shift
-      @url_status = parts.shift
-      @threat = parts.shift
-      @host = parts.shift
-      @ip_address = parts.shift
-      @asnumber = parts.shift
-      @country = parts.shift
+      if parts.length == 8
+        parse_without_tags parts
+      else
+        parse_with_tags parts
+      end
     end
 
     def defanged_url
@@ -95,6 +92,29 @@ module URLhausMonitor
 
     def _urlhaus_link
       "https://urlhaus.abuse.ch/host/#{host}/"
+    end
+
+    def parse_without_tags(parts)
+      @date_added = parts.shift
+      @url = parts.shift
+      @url_status = parts.shift
+      @threat = parts.shift
+      @host = parts.shift
+      @ip_address = parts.shift
+      @asnumber = parts.shift
+      @country = parts.shift
+    end
+
+    def parse_with_tags(parts)
+      @date_added = parts.shift
+      @url = parts.shift
+      @url_status = parts.shift
+      @threat = parts.shift
+      @tags = parts.shift
+      @host = parts.shift
+      @ip_address = parts.shift
+      @asnumber = parts.shift
+      @country = parts.shift
     end
   end
 end

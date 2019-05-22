@@ -2,49 +2,49 @@
 
 RSpec.describe URLhausMonitor::Entry do
   subject {
-    URLhausMonitor::Entry.new '"2019-03-23 08:02:08","http://store.sensyu.org/data/Smarty/config/msg.jpg","online","malware_download","store.sensyu.org","157.7.144.5","7506","JP"'
+    described_class.new '"2019-03-23 08:02:08","http://store.sensyu.org/data/Smarty/config/msg.jpg","online","malware_download","store.sensyu.org","157.7.144.5","7506","JP"'
   }
 
-  it "should have date_added" do
+  it do
     expect(subject.date_added).to eq("2019-03-23 08:02:08")
   end
 
-  it "should have url" do
+  it do
     expect(subject.url).to eq("http://store.sensyu.org/data/Smarty/config/msg.jpg")
   end
 
-  it "should have url_status" do
+  it do
     expect(subject.url_status).to eq("online")
   end
 
-  it "should have threat" do
+  it do
     expect(subject.threat).to eq("malware_download")
   end
 
-  it "should have host" do
+  it do
     expect(subject.host).to eq("store.sensyu.org")
   end
 
-  it "should have ip_address" do
+  it do
     expect(subject.ip_address).to eq("157.7.144.5")
   end
 
-  it "should have asnumber" do
+  it do
     expect(subject.asnumber).to eq("7506")
   end
 
-  it "should have country" do
+  it do
     expect(subject.country).to eq("JP")
   end
 
   describe "#defanged_url" do
-    it "should reeturn a defanged url" do
+    it do
       expect(subject.defanged_url).to eq("http://store[.]sensyu[.]org/data/Smarty/config/msg[.]jpg")
     end
   end
 
   describe "#defanged_host" do
-    it "should reeturn a defanged host" do
+    it "reeturns a defanged host" do
       expect(subject.defanged_host).to eq("store[.]sensyu[.]org")
     end
   end
