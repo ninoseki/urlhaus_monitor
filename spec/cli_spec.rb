@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe URLhausMonitor::CLI do
-  subject { URLhausMonitor::CLI }
+  subject { described_class }
 
   describe "#lookup_by_country" do
     before do

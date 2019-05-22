@@ -3,7 +3,8 @@
 RSpec.describe URLhausMonitor::Monitor do
   include FakeFS::SpecHelpers
 
-  subject { URLhausMonitor::Monitor.new }
+  subject { described_class.new }
+
   let(:mock) { URLhausMonitor::Checker.new }
 
   before do
@@ -16,21 +17,21 @@ RSpec.describe URLhausMonitor::Monitor do
   end
 
   describe "#lookup_by_country" do
-    it "should output to STDOUT" do
+    it do
       output = capture(:stdout) { subject.lookup_by_country("JP") }
       expect(output).to be_a(String)
     end
   end
 
   describe "#lookup_by_tld" do
-    it "should output to STDOUT" do
+    it do
       output = capture(:stdout) { subject.lookup_by_tld("jp") }
       expect(output).to be_a(String)
     end
   end
 
   describe "#lookup_by_asn" do
-    it "should output to STDOUT" do
+    it do
       output = capture(:stdout) { subject.lookup_by_asn("7506") }
       expect(output).to be_a(String)
     end
