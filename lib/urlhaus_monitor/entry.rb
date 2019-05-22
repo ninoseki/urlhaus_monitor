@@ -32,38 +32,69 @@ module URLhausMonitor
     end
 
     def defanged_host
-      @defanged_host ||=  host.gsub(/\./, "[.]")
-    end
-
-    def vt_link
-      "https://www.virustotal.com/#/domain/#{host}"
-    end
-
-    def urlhaus_link
-      "https://urlhaus.abuse.ch/host/#{host}/"
+      @defanged_host ||= host.gsub(/\./, "[.]")
     end
 
     def title
-      "#{defanged_url} (#{defanged_host} / #{ip_address}) (#{date_added})"
+      "#{defanged_url} (#{defanged_host} / #{ip_address} / #{date_added}) : #{threat}"
+    end
+
+    def vt_link
+      return nil unless _vt_link
+
+      {
+        type: "button",
+        text: "Lookup on VirusTotal",
+        url: _vt_link,
+      }
+    end
+
+    def urlscan_link
+      return nil unless _urlscan_link
+
+      {
+        type: "button",
+        text: "Lookup on urlscan.io",
+        url: _urlscan_link,
+      }
+    end
+
+    def urlhaus_link
+      return nil unless _urlhaus_link
+
+      {
+        type: "button",
+        text: "Lookup on URLhaus",
+        url: _urlhaus_link,
+      }
+    end
+
+    def actions
+      [vt_link, urlscan_link, urlhaus_link].compact
     end
 
     def to_attachements
       [
         {
-          fallback: "urlhaus link",
-          title: defanged_host,
-          title_link: urlhaus_link,
-          footer: "urlhaus.abuse.ch",
-          footer_icon: "http://www.google.com/s2/favicons?domain=urlhaus.abuse.ch"
-        },
-        {
-          fallback: "vt link",
-          title: defanged_host,
-          title_link: vt_link,
-          footer: "virustotal.com",
-          footer_icon: "http://www.google.com/s2/favicons?domain=virustotal.com"
+          text: defanged_host,
+          fallback: "VT & urlscan.io links",
+          actions: actions
         }
       ]
+    end
+
+    private
+
+    def _vt_link
+      "https://www.virustotal.com/#/domain/#{host}"
+    end
+
+    def _urlscan_link
+      "https://urlscan.io/domain/#{host}"
+    end
+
+    def _urlhaus_link
+      "https://urlhaus.abuse.ch/host/#{host}/"
     end
   end
 end
