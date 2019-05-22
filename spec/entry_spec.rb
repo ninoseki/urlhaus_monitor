@@ -50,10 +50,10 @@ RSpec.describe URLhausMonitor::Entry do
   end
 
   describe "#to_attachements" do
-    it "should reeturn a defanged url" do
+    it do
       attachements = subject.to_attachements
       attachements.each do |attachement|
-        expect(attachement.dig(:title)).to be_a(String)
+        expect(attachement.dig(:text)).to be_a(String)
       end
     end
   end
