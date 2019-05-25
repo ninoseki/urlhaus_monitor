@@ -12,9 +12,6 @@ module URLhausMonitor
         slack.post title, attachments: attachments
       else
         puts title
-        attachments.each do |attachment|
-          puts attachment.dig(:title_link)
-        end
       end
     end
 
