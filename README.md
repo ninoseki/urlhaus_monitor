@@ -9,11 +9,12 @@ A monitoring tool for [URLhaus](https://urlhaus.abuse.ch/) feeds.
 
 - URLhaus feeds lookup by AS number, country code and TLD.
 - Slack notification.
+- Caching.
 
 ## Installation
 
 ```bash
-$ gem install urlhaus_monitor
+gem install urlhaus_monitor
 ```
 
 ## Usage
@@ -39,15 +40,11 @@ Please set the following environmental variables for enabling Slack notification
 ## Screenshots
 
 ```bash
-$ urlhaus_monitor lookup_by_tld jp
+urlhaus_monitor lookup_by_tld jp
 ```
 
-![img](./screenshots/example.png)
+![image](./screenshots/example.png)
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-```
-
-```
