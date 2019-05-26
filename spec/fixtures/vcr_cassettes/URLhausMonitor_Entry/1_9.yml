@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://urlhaus-api.abuse.ch/v1/url/
+    body:
+      encoding: US-ASCII
+      string: url=http%3A%2F%2Fstore.sensyu.org%2Fdata%2FSmarty%2Fconfig%2Fmsg.jpg
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - urlhaus-api.abuse.ch
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 26 May 2019 23:32:27 GMT
+      Server:
+      - Apache/2
+      Strict-Transport-Security:
+      - max-age=15768000 ; includeSubDomains
+      Feature-Policy:
+      - accelerometer 'none'; ambient-light-sensor 'none'; autoplay 'none'; camera
+        'none'; encrypted-media 'none'; fullscreen 'none'; geolocation 'none'; gyroscope
+        'none'; magnetometer 'none'; microphone 'none'; midi 'none'; payment 'none';
+        picture-in-picture 'none'; speaker 'none'; usb 'none'; vr 'none'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self''; img-src ''self'' data: https://www.google-analytics.com:443;
+        style-src ''self''; object-src ''none'''
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - max-age=300
+      Expires:
+      - Sun, 26 May 2019 23:37:27 GMT
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - sameorigin
+      Content-Length:
+      - '600'
+      Content-Type:
+      - text/html
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "query_status": "ok",
+            "id": "164599",
+            "urlhaus_reference": "https:\/\/urlhaus.abuse.ch\/url\/164599\/",
+            "url": "http:\/\/store.sensyu.org\/data\/Smarty\/config\/msg.jpg",
+            "url_status": "offline",
+            "host": "store.sensyu.org",
+            "date_added": "2019-03-23 08:02:08 UTC",
+            "threat": "malware_download",
+            "blacklists": {
+                "gsb": "not listed",
+                "spamhaus_dbl": "not listed",
+                "surbl": "not listed"
+            },
+            "reporter": "zbetcheckin",
+            "larted": "true",
+            "takedown_time_seconds": "164773",
+            "tags": [
+                "exe",
+                "Troldesh"
+            ],
+            "payloads": [
+                {
+                    "firstseen": "2019-03-23",
+                    "filename": null,
+                    "file_type": "exe",
+                    "response_size": "1283336",
+                    "response_md5": "013aae78d326cfb1cc3c1baf924368c1",
+                    "response_sha256": "4b8531ec896f8e1e1040c1b18d13cdefe7cd39b6bf64e2136e04ec44974eb50d",
+                    "urlhaus_download": "https:\/\/urlhaus-api.abuse.ch\/v1\/download\/4b8531ec896f8e1e1040c1b18d13cdefe7cd39b6bf64e2136e04ec44974eb50d\/",
+                    "signature": "Ransomware.Troldesh",
+                    "virustotal": {
+                        "result": "49 \/ 70",
+                        "percent": "70.00",
+                        "link": "https:\/\/www.virustotal.com\/file\/4b8531ec896f8e1e1040c1b18d13cdefe7cd39b6bf64e2136e04ec44974eb50d\/analysis\/1553307514\/"
+                    }
+                }
+            ]
+        }
+    http_version: 
+  recorded_at: Sun, 26 May 2019 23:32:27 GMT
+recorded_with: VCR 4.0.0

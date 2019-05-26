@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "csv"
+require "json"
+require "urlhaus"
 
 module URLhausMonitor
   class Entry
@@ -22,6 +24,15 @@ module URLhausMonitor
       else
         parse_with_tags parts
       end
+
+      @api = URLhaus::API.new
+    end
+
+    def tags
+      @tags ||= [].tap do |out|
+        res = @api.url(url)
+        out << res.dig("tags") || []
+      end.first
     end
 
     def defanged_url
@@ -33,7 +44,7 @@ module URLhausMonitor
     end
 
     def title
-      "#{defanged_url} (#{defanged_host} / #{ip_address} / #{date_added}) : #{threat}"
+      "#{defanged_url} (#{defanged_host} / #{ip_address} / #{date_added}):  #{threat} #{tags}"
     end
 
     def vt_link
@@ -75,8 +86,8 @@ module URLhausMonitor
         {
           text: defanged_host,
           fallback: "VT & urlscan.io links",
-          actions: actions
-        }
+          actions: actions,
+        },
       ]
     end
 
@@ -110,7 +121,7 @@ module URLhausMonitor
       @url = parts.shift
       @url_status = parts.shift
       @threat = parts.shift
-      @tags = parts.shift
+      @tags = parts.shift.split("|")
       @host = parts.shift
       @ip_address = parts.shift
       @asnumber = parts.shift
