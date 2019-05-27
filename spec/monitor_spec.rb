@@ -11,7 +11,7 @@ RSpec.describe URLhausMonitor::Monitor do
     allow(URLhausMonitor::Checker).to receive(:new).and_return(mock)
     allow(mock).to receive(:lookup).and_return(
       [
-        URLhausMonitor::Entry.new('"2019-03-23 08:02:08","http://store.sensyu.org/data/Smarty/config/msg.jpg","online","malware_download","store.sensyu.org","157.7.144.5","7506","JP"')
+        URLhausMonitor::Entry.new('"2019-03-23 08:02:08","http://store.sensyu.org/data/Smarty/config/msg.jpg","online","malware_download","emotet|epoch2","store.sensyu.org","157.7.144.5","7506","JP"'),
       ]
     )
   end

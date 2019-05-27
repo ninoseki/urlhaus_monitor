@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe URLhausMonitor::Entry do
+RSpec.describe URLhausMonitor::Entry, :vcr do
   subject {
     described_class.new '"2019-03-23 08:02:08","http://store.sensyu.org/data/Smarty/config/msg.jpg","online","malware_download","store.sensyu.org","157.7.144.5","7506","JP"'
   }
@@ -35,6 +35,10 @@ RSpec.describe URLhausMonitor::Entry do
 
   it do
     expect(subject.country).to eq("JP")
+  end
+
+  it do
+    expect(subject.tags).to eq(["exe", "Troldesh"])
   end
 
   describe "#defanged_url" do
